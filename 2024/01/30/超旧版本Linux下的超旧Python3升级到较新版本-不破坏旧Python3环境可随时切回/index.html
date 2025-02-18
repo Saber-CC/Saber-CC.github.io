@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>超旧版本Linux下的超旧Python3升级到较新版本(不破坏旧Python3环境可随时切回) - SaberCC Blog</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="SaberCC,"> 
+    <meta name="description" content="介绍本文介绍为超旧版本Linux下的超旧Python3升级到较新版本，同时不破坏原本旧环境Python环境也可以随时切回。
+本文的例子为CentOS7.6+Python3.6，升级到最新的Pytho,"> 
+    <meta name="author" content="SaberCC"> 
+    <link rel="alternative" href="atom.xml" title="SaberCC Blog" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.ico"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="超旧版本Linux下的超旧Python3升级到较新版本(不破坏旧Python3环境可随时切回) - SaberCC Blog"/>
+    <meta name="twitter:description" content="介绍本文介绍为超旧版本Linux下的超旧Python3升级到较新版本，同时不破坏原本旧环境Python环境也可以随时切回。
+本文的例子为CentOS7.6+Python3.6，升级到最新的Pytho,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="SaberCC Blog"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="超旧版本Linux下的超旧Python3升级到较新版本(不破坏旧Python3环境可随时切回) - SaberCC Blog"/>
+    <meta property="og:description" content="介绍本文介绍为超旧版本Linux下的超旧Python3升级到较新版本，同时不破坏原本旧环境Python环境也可以随时切回。
+本文的例子为CentOS7.6+Python3.6，升级到最新的Pytho,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">SaberCC Blog</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://ccalt.cn"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">超旧版本Linux下的超旧Python3升级到较新版本(不破坏旧Python3环境可随时切回)</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">超旧版本Linux下的超旧Python3升级到较新版本(不破坏旧Python3环境可随时切回)</h1>
+        <div class="stuff">
+            <span>一月 30, 2024</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/CentOS/" rel="tag">CentOS</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/OpenSSL/" rel="tag">OpenSSL</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>本文介绍为超旧版本Linux下的超旧Python3升级到较新版本，同时不破坏原本旧环境Python环境也可以随时切回。</p>
+<p>本文的例子为CentOS7.6+Python3.6，升级到最新的Python3.10，<strong>pip会一起绑定无需担心pip环境错乱</strong>，<strong>本文升级的原因为旧版本Python3.6编译时OpenSSL库为1.0.2并不支持TLS1.3协议，导致Requests库访问某些仅支持TLS1.3协议的https网站报错</strong></p>
+<p>当然也有其他办法解决笔者遇到的这个问题，但是笔者也希望能够将过老版本的Python3.6遗弃，使用较新Python3，同时不抛弃旧环境Python，以免旧程序出现特殊问题以备不时之需。</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>首先本次使用的核心工具为Pyenv，一个简单的Python版本管理，该工具的Python环境均安装在用户目录下，不影响系统环境，同时可以切换多个Python版本并且管理性、易用性极佳，可以不礼貌的理解为简易版本的Anaconda，但是安装起来更加简单、更轻量化</p>
+<h3 id="下载Pyenv"><a href="#下载Pyenv" class="headerlink" title="下载Pyenv"></a>下载Pyenv</h3><p>Pyenv的官方地址：<a target="_blank" rel="noopener" href="https://github.com/pyenv/pyenv">https://github.com/pyenv/pyenv</a></p>
+<p>Linux安装方法：<a target="_blank" rel="noopener" href="https://github.com/pyenv/pyenv?tab=readme-ov-file#automatic-installer">https://github.com/pyenv/pyenv?tab=readme-ov-file#automatic-installer</a></p>
+<p>官方给出了安装bash，只需要简单执行一行bash便完成了安装。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://pyenv.run | bash</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置Pyenv"><a href="#配置Pyenv" class="headerlink" title="配置Pyenv"></a>配置Pyenv</h3><p>安装完毕之后需要进行配置，理论上一般Linux系统都有.bashrc文件，直接执行一下bash命令，将环境变量导入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;export PYENV_ROOT=&quot;$HOME/.pyenv&quot;&#x27;</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;command -v pyenv &gt;/dev/null || export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;&#x27;</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;eval &quot;$(pyenv init -)&quot;&#x27;</span> &gt;&gt; ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<p>若无的话可参考官方其他导入方法：<a target="_blank" rel="noopener" href="https://github.com/pyenv/pyenv?tab=readme-ov-file#set-up-your-shell-environment-for-pyenv">https://github.com/pyenv/pyenv?tab=readme-ov-file#set-up-your-shell-environment-for-pyenv</a></p>
+<h3 id="配置OpenSSL1-1-x"><a href="#配置OpenSSL1-1-x" class="headerlink" title="配置OpenSSL1.1.x"></a>配置OpenSSL1.1.x</h3><p>该步骤是本文演示中的升级到Python3.10之后OpenSSL库也同时追加编译urllib3&gt;2.x版本，若OpenSSL为1.0.x版本，则urllib3&lt;2.x版本。</p>
+<p>例如Requests等网络请求功能不支持TLS1.3协议，若不需要该步骤可忽略直接进入下一部<strong>安装Python</strong>，但笔者依旧建议读者跟随笔者一同升级OpenSSL。</p>
+<p>旧Linux机器OpenSSL基本为1.0.x版本理论上均该被迭代防止未来出现Bug。以下升级过程均为CentOS的演示，其他LinuxOS可查询互联网资料同理。</p>
+<h4 id="升级OpenSSL"><a href="#升级OpenSSL" class="headerlink" title="升级OpenSSL"></a>升级OpenSSL</h4><p>执行以下命令，可以将OpenSSL1.1.x版本全家桶一同安装，省时省力</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install openssl11*</span><br></pre></td></tr></table></figure>
+
+<p>此处即可以卸载旧版本OpenSSL1.0.x版本也可以不管，<strong>本文不建议卸载，但依旧想卸载可以继续阅读以下步骤</strong>。执行以下命令，无需追加*号，只需要卸载旧版本openssl即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum remove openssl</span><br></pre></td></tr></table></figure>
+
+<p>为了防止某些程序直接调用openssl导致报错，可以进行软链接，防止某些程序报错</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ln</span> -s /usr/bin/openssl11 /usr/bin/openssl</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装Python"><a href="#安装Python" class="headerlink" title="安装Python"></a>安装Python</h3><p>此时可以执行Pyenv命令，查看当前机器默认支持的最高版本Python版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyenv install -l</span><br></pre></td></tr></table></figure>
+
+<h4 id="OpenSSL1-1-x下的特殊安装Python"><a href="#OpenSSL1-1-x下的特殊安装Python" class="headerlink" title="OpenSSL1.1.x下的特殊安装Python"></a>OpenSSL1.1.x下的特殊安装Python</h4><p>本机器CentOS7.6仅支持最高Python3.10，本文以安装Python3.10为主，本条为结合了OpenSSL1.1.x环境的安装步骤，若无此需求直接跳过进入下一步骤。</p>
+<p>由于需要追加一些参数将上述新安装的OpenSSL1.1.x版本并入build过程，否则默认build的OpenSSL为1.0.x版本，urllib3不会是&gt;2.x版本，依旧不支持TLS1.3协议，执行以下命令配置build环境。</p>
+<p><strong>本文建议不要在追加3.10.x中的.x，Pyenv会自动追寻最后一个补丁版本。</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CPPFLAGS=<span class="string">&quot;<span class="subst">$(pkg-config --cflags openssl11)</span>&quot;</span> \</span><br><span class="line">LDFLAGS=<span class="string">&quot;<span class="subst">$(pkg-config --libs openssl11)</span>&quot;</span> \</span><br><span class="line">pyenv install -v 3.10</span><br></pre></td></tr></table></figure>
+
+<p>若非CentOS的话也要追加OpenSSL1.1.x版本，可以参考官方build文档：<a target="_blank" rel="noopener" href="https://github.com/pyenv/pyenv/wiki/Common-build-problems">https://github.com/pyenv/pyenv/wiki/Common-build-problems</a></p>
+<h4 id="正常安装"><a href="#正常安装" class="headerlink" title="正常安装"></a>正常安装</h4><p>正常只需要执行该命令即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyenv install -v 3.10</span><br></pre></td></tr></table></figure>
+
+<h3 id="切换Python"><a href="#切换Python" class="headerlink" title="切换Python"></a>切换Python</h3><p>此刻安装完毕之后全局Python依旧是旧版本Python，需要进行全局切换，执行以下命令即可进行全局切换</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyenv global &lt;your python version&gt;</span><br></pre></td></tr></table></figure>
+
+<p>此刻Python、pip环境均为最新版本</p>
+<h2 id="额外"><a href="#额外" class="headerlink" title="额外"></a>额外</h2><h3 id="Pyenv其他用法"><a href="#Pyenv其他用法" class="headerlink" title="Pyenv其他用法"></a>Pyenv其他用法</h3><ul>
+<li>列出可安装的python版本: pyenv install -l</li>
+<li>列出已安装的python版本: pyenv versions</li>
+<li>安装python版本3.11.0: pyenv install 3.11.0</li>
+<li>卸载python版本3.11.0: pyenv uninstall 3.11.0</li>
+<li><strong>pyenv仅覆盖当前目录下的python版本:</strong> pyenv local &lt;python版本&gt;</li>
+<li><strong>pyenv覆盖全局的python版本</strong>: pyenv global &lt;python版本&gt;</li>
+<li><strong>pyenv覆盖当前shell的python版本-只影响当前的shell会话</strong>: pyenv shell &lt;python版本&gt;</li>
+<li><strong>取消pyenv全局覆盖</strong>:pyenv global system</li>
+<li><strong>取消pyenv覆盖当前shell版本</strong>:pyenv shell –unset</li>
+<li><strong>pyenv的global、local、shell的优先级关系是</strong>:shell &gt; local &gt; global</li>
+</ul>
+<h3 id="某些情况下调用不到Pyenv安装的Python"><a href="#某些情况下调用不到Pyenv安装的Python" class="headerlink" title="某些情况下调用不到Pyenv安装的Python"></a>某些情况下调用不到Pyenv安装的Python</h3><p>虽然已经通过pyenv全局覆盖了新Python环境，<strong>但是某些情况下一些工具不读取环境变量导致依旧使用的是旧版本Python</strong>，解决方法为直接调用绝对路径下的新Python。</p>
+<p>本文以root为例，<strong>绝对路径为&#x2F;root&#x2F;.pyenv&#x2F;versions&#x2F;3.10.13&#x2F;bin&#x2F;python</strong>。该方法可解决找不到路径的问题</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="https://link.hhtjim.com/163/565841117.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

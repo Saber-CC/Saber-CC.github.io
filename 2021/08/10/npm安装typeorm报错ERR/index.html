@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>npm安装typeorm报错ERR踩坑排查 - SaberCC Blog</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="SaberCC,"> 
+    <meta name="description" content="这几天写ts需要用到数据库于是找到typeorm，但是npm安装一直失败，并且报错内容不明意义非常奇怪
+当你未安装python时报这个错误
+
+
+当你认为安装python之后可以解决却出现这个报错
+
+,"> 
+    <meta name="author" content="SaberCC"> 
+    <link rel="alternative" href="atom.xml" title="SaberCC Blog" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.ico"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="npm安装typeorm报错ERR踩坑排查 - SaberCC Blog"/>
+    <meta name="twitter:description" content="这几天写ts需要用到数据库于是找到typeorm，但是npm安装一直失败，并且报错内容不明意义非常奇怪
+当你未安装python时报这个错误
+
+
+当你认为安装python之后可以解决却出现这个报错
+
+,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="SaberCC Blog"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="npm安装typeorm报错ERR踩坑排查 - SaberCC Blog"/>
+    <meta property="og:description" content="这几天写ts需要用到数据库于是找到typeorm，但是npm安装一直失败，并且报错内容不明意义非常奇怪
+当你未安装python时报这个错误
+
+
+当你认为安装python之后可以解决却出现这个报错
+
+,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">SaberCC Blog</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://ccalt.cn"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">npm安装typeorm报错ERR踩坑排查</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">npm安装typeorm报错ERR踩坑排查</h1>
+        <div class="stuff">
+            <span>八月 10, 2021</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/TypeScript/" rel="tag">TypeScript</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>这几天写ts需要用到数据库于是找到typeorm，但是npm安装一直失败，并且报错内容不明意义非常奇怪</p>
+<p>当你未安装python时报这个错误</p>
+<img src="/2021/08/10/npm%E5%AE%89%E8%A3%85typeorm%E6%8A%A5%E9%94%99ERR/image.png" class="" title="image">
+
+<p>当你认为安装python之后可以解决却出现这个报错</p>
+<img src="/2021/08/10/npm%E5%AE%89%E8%A3%85typeorm%E6%8A%A5%E9%94%99ERR/image-1.png" class="" title="image-1">
+
+<p>开始排查原因,首先百度typeorm安装失败，但是网上并没有人出现同类错误。谷歌同样也是。</p>
+<p>现在回头思考，首先npm是nodejs的包管理器的和python关系不大，虽然可以联动但是此刻我们安装的是typeorm肯定和python没有关系，所以此刻的报错没有意义。</p>
+<p>开始排查错误，首先卸载nodejs，从零开始配置nodejs和npm环境然后再次安装依旧是同样的错误。所以排除npm安装了其他项目导致typeorm安装失败。</p>
+<p>此刻开始无法理解为何错误，首先百度谷歌没有任何安装失败的典例，说明typeorm安装就是使用npm install typeorm -g或者npm install typeorm –save安装并且非常简单不会出错。</p>
+<p>这次再次卸载并且不配置任何环境使用nodejs默认配置直接安装，最后成功。</p>
+<img src="/2021/08/10/npm%E5%AE%89%E8%A3%85typeorm%E6%8A%A5%E9%94%99ERR/image-2.png" class="" title="image-2">
+
+<p>此时正说明npm安装没有任何问题，于是将目光转向了配置环境的步骤，而首先进入目光的就是修改镜像站</p>
+<p>npm config set registry&#x3D;<a target="_blank" rel="noopener" href="http://registry.npm.taobao.org/">http://registry.npm.taobao.org</a></p>
+<p>然后再次安装发现爆出上述错误，此刻可以确定为原因为taobao镜像站问题，将taobao镜像站改为原镜像站</p>
+<p>解决方法</p>
+<p>1、cmd输入npm config set registry&#x3D;，即可重置为默认镜像站</p>
+<p>2、C:\Users\用户名，打开.npmrc文件删除registry&#x3D;<a target="_blank" rel="noopener" href="http://registry.npm.taobao.org保存/">http://registry.npm.taobao.org保存</a></p>
+<p>然后重新打开cmd输入npm install typeorm -g即可安装成功</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="https://link.hhtjim.com/163/565841117.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

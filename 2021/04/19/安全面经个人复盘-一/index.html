@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>安全面经个人复盘(一) - SaberCC Blog</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="SaberCC,"> 
+    <meta name="description" content="人生第一次面试上来聊了一下直接切入正题，但是太紧张老是结巴和复读，即使如此面试官也是很耐心的提问。真心爱了&amp;#x2F;(ㄒoㄒ)&amp;#x2F;~~。
+1、渗透测试的流程1、信息收集：whois、网站源,"> 
+    <meta name="author" content="SaberCC"> 
+    <link rel="alternative" href="atom.xml" title="SaberCC Blog" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.ico"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="安全面经个人复盘(一) - SaberCC Blog"/>
+    <meta name="twitter:description" content="人生第一次面试上来聊了一下直接切入正题，但是太紧张老是结巴和复读，即使如此面试官也是很耐心的提问。真心爱了&amp;#x2F;(ㄒoㄒ)&amp;#x2F;~~。
+1、渗透测试的流程1、信息收集：whois、网站源,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="SaberCC Blog"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="安全面经个人复盘(一) - SaberCC Blog"/>
+    <meta property="og:description" content="人生第一次面试上来聊了一下直接切入正题，但是太紧张老是结巴和复读，即使如此面试官也是很耐心的提问。真心爱了&amp;#x2F;(ㄒoㄒ)&amp;#x2F;~~。
+1、渗透测试的流程1、信息收集：whois、网站源,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">SaberCC Blog</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://ccalt.cn"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">安全面经个人复盘(一)</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">安全面经个人复盘(一)</h1>
+        <div class="stuff">
+            <span>四月 19, 2021</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E9%9D%A2%E7%BB%8F/" rel="tag">面经</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>人生第一次面试上来聊了一下直接切入正题，但是太紧张老是结巴和复读，即使如此面试官也是很耐心的提问。真心爱了&#x2F;(ㄒoㄒ)&#x2F;~~。</p>
+<h3 id="1、渗透测试的流程"><a href="#1、渗透测试的流程" class="headerlink" title="1、渗透测试的流程"></a>1、渗透测试的流程</h3><p>1、信息收集：whois、网站源IP、旁站、C段网站、服务器系统版本、容器版本、程序版本、数据库类型、二级域名、防火墙、维护者信息</p>
+<p>2、漏洞扫描：Nessus, AWVS</p>
+<p>3、手动挖掘：Webshell，SSRF，XSS，逻辑漏洞，SQL注入，弱口令等等</p>
+<p>4、验证漏洞</p>
+<p>PS：当然不可能就这，这个只是个大概，这个问题如果面试的时候问到了，不能就向上面说个大概，这是能证明你实力的真正问题。本人面试的时候就说了20分钟以上<strong>（一定要细说）</strong>，建议准备一下自己的大纲不然很容易复读和结巴😂。</p>
+<h3 id="2、XSS获取平台"><a href="#2、XSS获取平台" class="headerlink" title="2、XSS获取平台"></a>2、XSS获取平台</h3><p>各有各的，这里不说自己的平台了</p>
+<h3 id="3、XSS漏洞修补方式"><a href="#3、XSS漏洞修补方式" class="headerlink" title="3、XSS漏洞修补方式"></a>3、XSS漏洞修补方式</h3><p>1、输入编码转义</p>
+<p>2、白名单过滤</p>
+<p>3、添加Http-only尽量降低XSS的危害</p>
+<h3 id="4、XSS的绕过方法"><a href="#4、XSS的绕过方法" class="headerlink" title="4、XSS的绕过方法"></a>4、XSS的绕过方法</h3><p>1、<strong>双写绕过</strong>，例如在过滤domain为空时，可以通过domdomainaim进行绕过测试。</p>
+<p>2、<strong>编码绕过</strong>，例如Payload: <code>&quot;&gt;&lt;script&gt;eval(atob(&#39;YWxlcnQoZG9jdW1lbnQuZG9tYWluKQ==&#39;));&lt;/script&gt;</code></p>
+<p>3、<strong>空格绕过</strong>，例如：<code>&quot;&gt;&lt;a href=&quot;javascr ipt:alert(document.domain);&quot;&gt;XSS&lt;/a&gt;</code></p>
+<p>还有注释干扰，伪协议、空格Tab回车，css等绕过方法</p>
+<h3 id="5、Mysql注入写入一句话条件"><a href="#5、Mysql注入写入一句话条件" class="headerlink" title="5、Mysql注入写入一句话条件"></a>5、Mysql注入写入一句话条件</h3><p>1、获取网站可写目录的绝对路径OUTFILE</p>
+<p>2、root权限</p>
+<p>3、没有配置–secure-file-priv</p>
+<h3 id="6、Mysql注入写入一句话的函数"><a href="#6、Mysql注入写入一句话的函数" class="headerlink" title="6、Mysql注入写入一句话的函数"></a>6、Mysql注入写入一句话的函数</h3><p>OUTFILE</p>
+<h3 id="7、Sql注入的修复方式"><a href="#7、Sql注入的修复方式" class="headerlink" title="7、Sql注入的修复方式"></a>7、Sql注入的修复方式</h3><p>1、所有的查询语句都使用数据库提供的参数化查询接口，参数化的语句使用参数而不是将用户输入变量嵌入到SQL语句中。当前几乎所有的数据库系统都提供了参数化SQL语句执行接口，使用此接口可以非常有效的防止SQL注入攻击。</p>
+<p>2、对进入数据库的特殊字符（’”\尖括号&amp;*;等）进行转义处理，或编码转换。</p>
+<p>3、严格限制变量类型，比如整型变量就采用intval()函数过滤，数据库中的存储字段必须对应为int型。</p>
+<p>4、数据长度应该严格规定，能在一定程度上防止比较长的SQL注入语句无法正确执行。</p>
+<p>5、网站每个数据层的编码统一，建议全部使用UTF-8编码，上下层编码不一致有可能导致一些过滤模型被绕过。</p>
+<p>6、严格限制网站用户的数据库的操作权限，给此用户提供仅仅能够满足其工作的权限，从而最大限度的减少注入攻击对数据库的危害。</p>
+<p>7、避免网站显示SQL错误信息，比如类型错误、字段不匹配等，防止攻击者利用这些错误信息进行一些判断。</p>
+<h3 id="8、Sql参数化查询"><a href="#8、Sql参数化查询" class="headerlink" title="8、Sql参数化查询"></a>8、Sql参数化查询</h3><p>参数化查询(Parameterized Query 或 Parameterized Statement)是指在设计与数据库链接并访问数据时，在需要填入数值或数据的地方，使用参数 (Parameter) 来给值，这个方法目前已被视为最有效可预防SQL注入攻击 (SQL Injection) 的攻击手法的防御方式。在使用参数化查询的情况下，数据库服务器不会将参数的内容视为SQL指令的一部份来处理，而是在<strong>数据库完成SQL指令的编译后，才套用参数运行</strong>，因此就算参数中含有指令，也不会被数据库运行。Access、SQL Server、MySQL、SQLite等常用数据库都支持参数化查询。</p>
+<h3 id="9、Mysql的报错注入的函数"><a href="#9、Mysql的报错注入的函数" class="headerlink" title="9、Mysql的报错注入的函数"></a>9、Mysql的报错注入的函数</h3><p>floor()，extractvalue()，updatexml()，exp()</p>
+<h3 id="10、Mysql的时间注入的函数"><a href="#10、Mysql的时间注入的函数" class="headerlink" title="10、Mysql的时间注入的函数"></a>10、Mysql的时间注入的函数</h3><p>sleep()，benchmark()，笛卡尔积，GET_LOCK()加锁，RLIKE REGEXP正则匹配</p>
+<h3 id="11、SQLMAP常用命令"><a href="#11、SQLMAP常用命令" class="headerlink" title="11、SQLMAP常用命令"></a>11、SQLMAP常用命令</h3><p><strong>GET方式</strong>sqlmap -u “url” &#x2F;&#x2F;这个URL必须含</p>
+<p><strong>POST方式</strong>sqlmap -u <a target="_blank" rel="noopener" href="http://testasp.vulnweb.com/Login.asp">http://testasp.vulnweb.com/Login.asp</a> –data “tfUName&#x3D;1&amp;tfUPass&#x3D;1”</p>
+<p><strong>cookie注入</strong>sqlmap -u “url” –cookie “chsadj” –level 2 等等</p>
+<h3 id="12、SQLMAP-R参数的使用"><a href="#12、SQLMAP-R参数的使用" class="headerlink" title="12、SQLMAP -R参数的使用"></a>12、SQLMAP -R参数的使用</h3><p>-r 1.txt 对于用post方法提交的，参数不在URL里面的网页，可以先截获数据，保存成文件再用这个参数执行</p>
+<h3 id="13、SQLMAP-GET型注入中许多参数只取其中一种"><a href="#13、SQLMAP-GET型注入中许多参数只取其中一种" class="headerlink" title="13、SQLMAP GET型注入中许多参数只取其中一种"></a>13、SQLMAP GET型注入中许多参数只取其中一种</h3><p>–param-del</p>
+<h3 id="14、SQLMAP其他参数的使用"><a href="#14、SQLMAP其他参数的使用" class="headerlink" title="14、SQLMAP其他参数的使用"></a>14、SQLMAP其他参数的使用</h3><p>–random-agent 使用随机的user-agent</p>
+<p>–header&#x3D;”\n” 指定头信息，如User-Agent:dsacs，大小写敏感，多个用\n分隔</p>
+<p>–delay 请求延迟间隔，单位秒，默认无延迟</p>
+<p>–level 设置检查的等级等</p>
+<h3 id="15、Sql注入宽字节注入原理"><a href="#15、Sql注入宽字节注入原理" class="headerlink" title="15、Sql注入宽字节注入原理"></a>15、Sql注入宽字节注入原理</h3><p>首先说下概念，GB2312、GBK、GB18030、BIG5、Shift_JIS等这些都是常说的宽字节，实际上只有两字节。宽字节带来的安全问题主要是吃ASCII字符(一字节)的现象，即将两个ascii字符误认为是一个宽字节字符。</p>
+<p>GBK 占用两字节，ASCII占用一字节，PHP中编码为GBK，函数执行添加的是ASCII编码（添加的符号为“\”），MYSQL默认字符集是GBK等宽字节字符集。</p>
+<p>%df’ 被PHP转义（开启GPC、用addslashes函数，或者icov等），单引号被加上反斜杠\，变成了 %df\’，其中\的十六进制是 %5C ，那么现在 %df\’ &#x3D;%df%5c%27，如果程序的默认字符集是GBK等宽字节字符集，则MySQL用GBK的编码时，会认为 %df%5c 是一个宽字符，也就是縗，也就是说：%df\’ &#x3D; %df%5c%27&#x3D;縗’，有了单引号就好注入了。</p>
+<h3 id="16、常见的逻辑漏洞"><a href="#16、常见的逻辑漏洞" class="headerlink" title="16、常见的逻辑漏洞"></a>16、常见的逻辑漏洞</h3><p>订单金额任意修改，验证码回传，未进行登陆凭证验证，接口无限制枚举，平行越权，垂直越权和交叉越权等等</p>
+<h3 id="17、Nmap使用"><a href="#17、Nmap使用" class="headerlink" title="17、Nmap使用"></a>17、Nmap使用</h3><p>nmap -T4 -A -v ip nmap最好用命令</p>
+<p>nmap ip&#x2F;24 扫描目标所在网段</p>
+<p>nmap -iL C:\targets.txt 扫描主机列表targets.txt中的所有目标地址</p>
+<p>nmap ip&#x2F;24 -exclude ip 扫描除某个地址以外的地址</p>
+<p>nmap ip -p 21,22 扫描某一地址的端口21,22</p>
+<h3 id="18、Burp抓取返回包3种方法"><a href="#18、Burp抓取返回包3种方法" class="headerlink" title="18、Burp抓取返回包3种方法"></a>18、Burp抓取返回包3种方法</h3><p>1、proxy模块抓取包右键Do intercept选取Response to this request</p>
+<p>2、proxy模块抓取包放入Repeater放行</p>
+<p>3、设置中勾选参数即可每个包都返回响应包</p>
+<h3 id="19、渗透过程中有趣的漏洞"><a href="#19、渗透过程中有趣的漏洞" class="headerlink" title="19、渗透过程中有趣的漏洞"></a>19、渗透过程中有趣的漏洞</h3><p>各有各的</p>
+<h3 id="20、XSS获取他人Cookie运用进行下一步渗透"><a href="#20、XSS获取他人Cookie运用进行下一步渗透" class="headerlink" title="20、XSS获取他人Cookie运用进行下一步渗透"></a>20、XSS获取他人Cookie运用进行下一步渗透</h3><p>如果获取的是普通用户Cookie则可以提交SRC，意义不大，若是获取管理员Cookie则可以进去后台进行下一步的渗透例如上传Webshell等等</p>
+<h3 id="21、半年之内常见的组件和中间件漏洞"><a href="#21、半年之内常见的组件和中间件漏洞" class="headerlink" title="21、半年之内常见的组件和中间件漏洞"></a>21、半年之内常见的组件和中间件漏洞</h3><p>IIS 1、PUT漏洞 2、短文件名猜解 3、远程代码执行 4、解析漏洞</p>
+<p>Apache 1、解析漏洞 2、目录遍历 </p>
+<p>Nginx 1、文件解析 2、目录遍历 3、CRLF注入 4、目录穿越 </p>
+<p>Tomcat 1、远程代码执行 2、war后门文件部署 </p>
+<p>jBoss 1、反序列化漏洞 2、war后门文件部署 </p>
+<p>WebLogic 1、反序列化漏洞 2、SSRF 3、任意文件上传 4、war后门文件部署 </p>
+<p>其它中间件相关漏洞 1、FastCGI未授权访问、任意命令执行 2、PHPCGI远程代码执行</p>
+<h3 id="22、struts2-x2F-fuckjson-x2F-weblogic-x2F-websphere等漏洞"><a href="#22、struts2-x2F-fuckjson-x2F-weblogic-x2F-websphere等漏洞" class="headerlink" title="22、struts2&#x2F;fuckjson&#x2F;weblogic&#x2F;websphere等漏洞"></a>22、struts2&#x2F;fuckjson&#x2F;weblogic&#x2F;websphere等漏洞</h3><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/183876381">struts2漏洞传送门(一)</a>、<a target="_blank" rel="noopener" href="https://www.freebuf.com/vuls/246969.html">struts2漏洞传送门(二)</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/slyys/p/13086495.html">fastjson漏洞</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.freebuf.com/vuls/247028.html">websphere漏洞</a></p>
+<h3 id="23、应急响应"><a href="#23、应急响应" class="headerlink" title="23、应急响应"></a>23、应急响应</h3><p>参考文章<a target="_blank" rel="noopener" href="https://github.com/Bypass007/Emergency-Response-Notes">https://github.com/Bypass007/Emergency-Response-Notes</a></p>
+<h3 id="24、-windows和Linux日志溯源"><a href="#24、-windows和Linux日志溯源" class="headerlink" title="24、 windows和Linux日志溯源"></a>24、 windows和Linux日志溯源</h3><p>windows：win+R运行eventvwr进入事件查看器</p>
+<p>Linux：&#x2F;var&#x2F;log下的日志</p>
+<p>Web：查看Apache、Nginx、Mysql日志</p>
+<h3 id="25、爬虫脚本常用到哪些库"><a href="#25、爬虫脚本常用到哪些库" class="headerlink" title="25、爬虫脚本常用到哪些库"></a>25、爬虫脚本常用到哪些库</h3><p>requests、json、lxml、BeautifulSoup、pyquery等</p>
+<h3 id="26、解析服务器H5语言提取关键信息"><a href="#26、解析服务器H5语言提取关键信息" class="headerlink" title="26、解析服务器H5语言提取关键信息"></a>26、解析服务器H5语言提取关键信息</h3><p>BeautifulSoup</p>
+<h3 id="27、常见的爬虫框架"><a href="#27、常见的爬虫框架" class="headerlink" title="27、常见的爬虫框架"></a>27、常见的爬虫框架</h3><p>pyspider、scrapy、Crawley、Portia、selenium等</p>
+<h3 id="28、Linux命令创建用户"><a href="#28、Linux命令创建用户" class="headerlink" title="28、Linux命令创建用户"></a>28、Linux命令创建用户</h3><p>useradd和adduser，建议使用adduser会自动进入创建密码、目录等</p>
+<h3 id="29、Linux命令删除用户"><a href="#29、Linux命令删除用户" class="headerlink" title="29、Linux命令删除用户"></a>29、Linux命令删除用户</h3><p>userdel和deluser，建议使用deluser会自动删除用户目录等相关文件</p>
+<h3 id="30、Linux命令切换用户"><a href="#30、Linux命令切换用户" class="headerlink" title="30、Linux命令切换用户"></a>30、Linux命令切换用户</h3><p>su username 切换用户</p>
+<h3 id="31、Linux命令显示用户组"><a href="#31、Linux命令显示用户组" class="headerlink" title="31、Linux命令显示用户组"></a>31、Linux命令显示用户组</h3><p>首先cat &#x2F;etc&#x2F;passwd|grep username查找用户所在组ID</p>
+<p>cat &#x2F;etc&#x2F;group查看所有组信息找到组ID对应名</p>
+<p>PS：groups查看当前登录用户组内成员</p>
+<h3 id="32、Linux命令whereis"><a href="#32、Linux命令whereis" class="headerlink" title="32、Linux命令whereis"></a>32、Linux命令whereis</h3><p>Linux whereis命令用于查找文件。</p>
+<p>-b 　只查找二进制文件。<br>-B&lt;目录&gt; 　只在设置的目录下查找二进制文件。<br>-f 　不显示文件名前的路径名称。<br>-m 　只查找说明文件。<br>-M&lt;目录&gt; 　只在设置的目录下查找说明文件。<br>-s 　只查找原始代码文件。<br>-S&lt;目录&gt; 　只在设置的目录下查找原始代码文件。<br>-u 　查找不包含指定类型的文件。</p>
+<h3 id="33、Linux命令awk"><a href="#33、Linux命令awk" class="headerlink" title="33、Linux命令awk"></a>33、Linux命令awk</h3><p>AWK 是一种处理文本文件的语言，是一个强大的文本分析工具。</p>
+<p>awk ‘{[pattern] action}’ {filenames} # 行匹配语句 awk ‘’ 只能用单引号<br>awk -F #-F相当于内置变量FS, 指定分割字符<br>awk -v # 设置变量<br>awk -f {awk脚本} {文件名}</p>
+<h3 id="34、Linux命令创建目录"><a href="#34、Linux命令创建目录" class="headerlink" title="34、Linux命令创建目录"></a>34、Linux命令创建目录</h3><p>mkdir dirname</p>
+<p>PS：mkdir -p确保目录名称存在，不存在的就建一个。</p>
+<h3 id="35、Linux命令删除目录和文件"><a href="#35、Linux命令删除目录和文件" class="headerlink" title="35、Linux命令删除目录和文件"></a>35、Linux命令删除目录和文件</h3><p>rm -r dirname删除目录</p>
+<p>rm filename 删除文件</p>
+<p>PS：-i 删除前逐一询问确认，-f 即使原档案属性设为唯读，亦直接删除，无需逐一确认。-r 将目录及以下之文件删除。</p>
+<p><strong>谨慎使用rm -rf &#x2F;*</strong></p>
+<h3 id="36、Linux命令杀死进程"><a href="#36、Linux命令杀死进程" class="headerlink" title="36、Linux命令杀死进程"></a>36、Linux命令杀死进程</h3><p>首先top或者ps，建议使用ps，因为top是实时信息并不是找到进程号的最快手段</p>
+<p>使用ps aux | grep XXXX，例如ps aux | grep chrome可以快速找到与chrome相关的进程</p>
+<p>然后kill -9 PID</p>
+<p>PS：ps命令参数a &#x3D;为所有用户显示进程，u &#x3D;显示进程的用户&#x2F;所有者，x &#x3D;还显示未附加到终端的进程</p>
+<p>kill 1&#x3D;挂断，2&#x3D;从键盘终端，9&#x3D;杀死信号，15&#x3D;中断信号，17、19、23&#x3D;停止进程</p>
+<h3 id="37、Linux命令查看定时命令"><a href="#37、Linux命令查看定时命令" class="headerlink" title="37、Linux命令查看定时命令"></a>37、Linux命令查看定时命令</h3><p>crontab -l 列出目前的定时任务</p>
+<p>PS：crontab -e 写入新的定时任务</p>
+<p>crontab -r 删除当前的定时任务**(谨慎使用)**</p>
+<h3 id="38、Linux命令改变目录权限"><a href="#38、Linux命令改变目录权限" class="headerlink" title="38、Linux命令改变目录权限"></a>38、Linux命令改变目录权限</h3><p>chmod 4+2+1 filename</p>
+<p>PS：chown username filename 修改文件所有人</p>
+<p>chgrp groupname filename 修改文件所在组</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="https://link.hhtjim.com/163/565841117.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

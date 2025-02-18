@@ -1,0 +1,214 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>OpenWrt配置IPTV - SaberCC Blog</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="SaberCC,"> 
+    <meta name="description" content="前景提要本文解决的问题是机顶盒自主PPPOE拨号进入IPTV，但是由于家庭装修原因无法将机顶盒的网线插入直接光猫的ITV口中，中间需要走路由器，所以才会有此篇教程。
+解决OpenWrt配置IPTV的,"> 
+    <meta name="author" content="SaberCC"> 
+    <link rel="alternative" href="atom.xml" title="SaberCC Blog" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.ico"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="OpenWrt配置IPTV - SaberCC Blog"/>
+    <meta name="twitter:description" content="前景提要本文解决的问题是机顶盒自主PPPOE拨号进入IPTV，但是由于家庭装修原因无法将机顶盒的网线插入直接光猫的ITV口中，中间需要走路由器，所以才会有此篇教程。
+解决OpenWrt配置IPTV的,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="SaberCC Blog"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="OpenWrt配置IPTV - SaberCC Blog"/>
+    <meta property="og:description" content="前景提要本文解决的问题是机顶盒自主PPPOE拨号进入IPTV，但是由于家庭装修原因无法将机顶盒的网线插入直接光猫的ITV口中，中间需要走路由器，所以才会有此篇教程。
+解决OpenWrt配置IPTV的,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">SaberCC Blog</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://ccalt.cn"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">OpenWrt配置IPTV</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">OpenWrt配置IPTV</h1>
+        <div class="stuff">
+            <span>二月 24, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/IPTV/" rel="tag">IPTV</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/OpenWrt/" rel="tag">OpenWrt</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="前景提要"><a href="#前景提要" class="headerlink" title="前景提要"></a>前景提要</h2><p>本文解决的问题是机顶盒自主PPPOE拨号进入IPTV，但是由于家庭装修原因无法将机顶盒的网线插入直接光猫的ITV口中，中间需要走路由器，所以才会有此篇教程。</p>
+<p>解决OpenWrt配置IPTV的问题在网上搜索了很多办法，要么是教程太简单没有细节，要么就是教程太老现在的OpenWrt已经没有交换机功能失效掉，要么是教程太复杂需要涉及到各种OpenWrt插件然后实现了大量功能并且拓展了IPTV的使用范围，虽然其中包括了自己需要的功能却只占一丢丢，而我只需要让路由器转发一下，然后让机顶盒自己IPTV拨号就可以，无需那么多复杂功能。</p>
+<h2 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h2><p>1、无需改变光猫的桥接或者路由模式，并且不影响你之前的任何上网方式，光猫和OpenWrt都不需要改变你已有的网络配置</p>
+<p>2、由于新版OpenWrt取消掉了交换机功能，所以此方法任何版本即可，甚至大部分光猫都适用。</p>
+<p>3、不同运营商光猫可能不同，但是道理相同，只要明白我的教程，其他光猫同理可以做到。</p>
+<p>4、前提是机顶盒自主拨号上网，而不是IPTV和上网一个拨号，此处的PPPOE拨号不是你的上网拨号而是专门的IPTV拨号。解决的问题也是机顶盒网线无法直接插到光猫ITV口，中间只能走需要路由器。</p>
+<h2 id="所需准备"><a href="#所需准备" class="headerlink" title="所需准备"></a>所需准备</h2><p><strong>光猫的超级管理员账号密码</strong>。不是光猫背后的账号密码，超级管理员账号密码获取的最直接简单的方式就是询问宽带师傅，一般都会告诉你的，不建议使用网上的光猫超级管理员账号密码提取教程，因为现在的光猫密码都是随机分发的，并且漏洞在新版本都补上了。所以浪费时间，不如给宽带师傅打电话询问最方便快捷。</p>
+<h2 id="操作教程"><a href="#操作教程" class="headerlink" title="操作教程"></a>操作教程</h2><p>首先进入光猫的网关，<strong>以下展示的都是电信光猫，其他运营商同理</strong></p>
+<img src="/2022/02/24/OpenWrt%E9%85%8D%E7%BD%AEIPTV/image-20220203134640704.png" class="" title="image-20220203134640704">
+
+<p>然后输入你的光猫超级管理员账号密码进入后台</p>
+<img src="/2022/02/24/OpenWrt%E9%85%8D%E7%BD%AEIPTV/image-20220203134929305.png" class="" title="image-20220203134929305">
+
+<p>首先在当前页面下拉查看你的ITV业务连接名称，记住它</p>
+<img src="/2022/02/24/OpenWrt%E9%85%8D%E7%BD%AEIPTV/image-20220203135140913.png" class="" title="image-20220203135140913">
+
+<p>进入网络-&gt;网络设置-&gt;网络连接中点击连接名称找到你的后台中ITV的连接名称</p>
+<img src="/2022/02/24/OpenWrt%E9%85%8D%E7%BD%AEIPTV/image-20220203135408890.png" class="" title="image-20220203135408890">
+
+<p>接下来你可以如我的图中一样配置，<strong>关键在于开启Vlan，然后给予一个VlanID</strong>，我这里配置的VlanID为1669，此处你的VlanID可以在合法范围内任意配置，之后保存。<strong>此处根据家庭装修情况可能有些宽带师傅已经给你布置好了光猫IPTV的VLan配置</strong>。</p>
+<img src="/2022/02/24/OpenWrt%E9%85%8D%E7%BD%AEIPTV/image-20220203135904261.png" class="" title="image-20220203135904261">
+
+<p>进入网络-&gt;网络设置-&gt;VLAN绑定中，勾上一个空白框的选择，用户侧端口填一个非ITV口以外的网口，<strong>注意该网口同时也是你路由器wan口连接光猫的网口</strong>，用户侧VLAN填写你刚刚的VlanID，绑定WAN连接名称选择你的ITV连接名称。保存即可。</p>
+<img src="/2022/02/24/OpenWrt%E9%85%8D%E7%BD%AEIPTV/image-20220203140725230.png" class="" title="image-20220203140725230">
+
+<p>接下来将你的路由器WAN口连接到上一步你绑定的对应网口，进入OpenWrt后台，网络-&gt;接口-&gt;默认LAN-&gt;物理设置，添加一个自定义接口，我这边是添加一个eth0.1669，此处的1669就是你前几步配置的VLanID，根据你的具体VLanID来添加自定义接口，之后保存即可。</p>
+<img src="/2022/02/24/OpenWrt%E9%85%8D%E7%BD%AEIPTV/image-20220203141444052.png" class="" title="image-20220203141444052">
+
+<p>之后将你的机顶盒网线随意插入一个路由器LAN口，然后机顶盒自动PPPOE拨号，即可正常看电视，与机顶盒网线插光猫ITV口效果一样。</p>
+<p><strong>PS：此处较好的做法是将默认LAN口中取消掉一个桥接的物理LAN口，例如eth2(LAN2)，将其独立出来，然后创建新接口，新接口的协议为不配置协议，然后将取消的物理LAN口和上一步添加的自定义接口eth0.1669桥接如下图所示。之后将机顶盒网线插入你绑定的物理LAN口上，机顶盒就可以正常的PPPOE拨号看电视了。</strong></p>
+<img src="/2022/02/24/OpenWrt%E9%85%8D%E7%BD%AEIPTV/image-20220203142126145.png" class="" title="image-20220203142126145">
+
+<h2 id="其他情况"><a href="#其他情况" class="headerlink" title="其他情况"></a>其他情况</h2><p>如果你想要让机顶盒连接WiFi进入IPTV或者被OpenWrt的DHCP分配IP进入IPTV，那么你只需要将你的机顶盒里的PPPOE拨号转到OpenWrt中，前面的步骤相同，如果你明白了我这篇教程的原理，那么接下来的操作你也同样会做，这里就不做过多阐述了，只需要几步即可完成。</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="https://link.hhtjim.com/163/565841117.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>
